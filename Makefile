@@ -1,31 +1,34 @@
+SRCS =	main.c gnl/get_next_line_utils.c gnl/get_next_line.c
+
+OBJS = $(SRCS:.c=.o)
+
 CC = gcc
 
-NAME = cub
+FRAMEWORK = -framework OpenGL -framework AppKit
 
+CFLAGS = -Wall -Wextra -Werror
 
-CFLAGS = -Wall -Wextra -Werror  
+NAME = cub3D
 
+MLX = mlx/libmlx.a
 
-
-SRC = gnl/get_next_line.c \
-    gnl/get_next_line_utils.c \
-	main.c
-
-OBJS := $(SRC:.c=.o)
-
-%.o: %.c
-	$(CC)  -Werror -Imlx -c $< -o $@
+RM = rm -rf
 
 all: $(NAME)
 
-$(NAME): $(OBJS)
+$(NAME): $(MLX) $(OBJS)
+	$(CC) $(CFLAGS) $(OBJS) $(MLX) $(FRAMEWORK) -o $(NAME)
+
+$(MLX):
 	make -C mlx
-	$(CC) $(OBJS) -Lmlx -lmlx -framework OpenGL -framework AppKit -o $(NAME)
 
 clean:
-	rm -rf *.o
+	$(RM) $(OBJS)
+	make clean -C mlx
 
 fclean: clean
-	rm -f ${OBJS} $(NAME)
+	$(RM) $(NAME)
 
-re: fclean ${NAME}
+re: fclean all
+
+.PHONY: fclean clean re
