@@ -1,13 +1,15 @@
 CC = gcc
 
-NAME = so_long
+NAME = cub
 
 
-CFLAGS = -Werror  
+CFLAGS = -Wall -Wextra -Werror  
 
 
 
-SRC = 	test.c
+SRC = gnl/get_next_line.c \
+    gnl/get_next_line_utils.c \
+	main.c
 
 OBJS := $(SRC:.c=.o)
 
