@@ -5,11 +5,11 @@ CC = gcc
 
 MLX = mlx/libmlx.a
 
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g
 
 NAME = cub3D
 
-FRAMEWORK = -Lmlx -lmlx -framework OpenGL -framework AppKit #-fsanitize=address -g
+FRAMEWORK = -Lmlx -lmlx -framework OpenGL -framework AppKit
 
 RM = rm -rf
 

@@ -141,7 +141,7 @@ void	ft_raycasting(t_data *data)
 
 int ft_draw(t_data *data)
 {
-    destroy_win(data);
+    //destroy_win(data);
 
     ft_floor(data);
     ft_raycasting(data);
@@ -235,17 +235,10 @@ void	set_value(t_data *data)
 }
 void	texture(t_data *data, int x)
 {
-	//int	texy;
-    (void)x;
+	int	texy;
 	set_value(data);
-    /*
 	while (data->drawstart < data->drawend )
 	{
-
-  
-
-
-
 		texy = (int)data->texpos & 63;
 		data->texpos += data->texstep;
 
@@ -272,7 +265,6 @@ void	texture(t_data *data, int x)
         }
 		data->drawstart++;
 	}
-    */
 }
 
 
