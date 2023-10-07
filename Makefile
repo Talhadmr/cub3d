@@ -1,21 +1,21 @@
 SRCS =	main.c gnl/get_next_line_utils.c gnl/get_next_line.c
 
-OBJS = $(SRCS:.c=.o)
 
 CC = gcc
 
-FRAMEWORK = -framework OpenGL -framework AppKit
+MLX = mlx/libmlx.a
 
 CFLAGS = -Wall -Wextra -Werror
 
 NAME = cub3D
 
-MLX = mlx/libmlx.a
+FRAMEWORK = -Lmlx -lmlx -framework OpenGL -framework AppKit #-fsanitize=address -g
 
 RM = rm -rf
 
 all: $(NAME)
 
+OBJS = $(SRCS:.c=.o)
 $(NAME): $(MLX) $(OBJS)
 	$(CC) $(CFLAGS) $(OBJS) $(MLX) $(FRAMEWORK) -o $(NAME)
 

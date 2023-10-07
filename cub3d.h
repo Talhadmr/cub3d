@@ -6,7 +6,9 @@
 
 #include <stdio.h>
 # include <fcntl.h>
+#include <math.h>
 # include <stdlib.h>
+#include <string.h>
 typedef struct s_data
 {
     void *mlx_in;
@@ -32,9 +34,74 @@ typedef struct s_data
     double diry;
     double planex;
     double planey;
+    double camerax;
+    double raydirx;
+    double raydiry;
+    double deltadistx;
+    double deltadisty;
+    double sidedistx;
+    double sidedisty;
+	double	perpwalldist;
+    int	mapx;
+	int	mapy;
+    int	stepx;
+	int	stepy;
+	int	wall;
+    int side;
+	int	lineheight;
+	int	drawstart;
+	int drawend;
+    double	texstep;
+	double	texpos;
+	int	texnum;
+	int	tex_x;
 
 
+	char		*ea1;
+	char		*so1;
+	char		*we1;
+	char		*no1;
 
+    int			size;
+	void		*no;
+	int			*no_data;
+	int			no_bpp;
+	int			no_size_line;
+	int			no_endian;
+
+	int			*so_data;
+	int			so_bpp;
+	int			so_size_line;
+	int			so_endian;
+
+	int			*we_data;
+	int			we_bpp;
+	int			we_size_line;
+	int			we_endian;
+
+	int			*ea_data;
+	int			ea_bpp;
+	int			ea_size_line;
+	int			ea_endian;
+
+	void		*so;
+	void		*we;
+	void		*ea;
 }t_data;
+
+void fill_map(t_data *data, char *str);
+void player_location(t_data *data);
+void ft_cam(t_data *data);
+void destroy_win(t_data *data);
+void ft_floor(t_data *data);
+void	ft_raycasting(t_data *data);
+int ft_draw(t_data *data);
+void	direction(t_data *data);
+void	wallhit(t_data *data);
+void	raydist(t_data *data);
+void	set_value(t_data *data);
+void	texture(t_data *data, int x);
+void img(t_data *data);
+void ft_start(t_data *data);
 
 #endif
