@@ -134,7 +134,7 @@ void	ft_raycasting(t_data *data)
 		direction(data);
 		wallhit(data);
 		raydist(data);
-		texture(data, x);
+		//texture(data, x);
 		x++;
 	}
 }
@@ -237,34 +237,41 @@ void	texture(t_data *data, int x)
 {
 	int	texy;
 	set_value(data);
+	printf("side %d\n",data->side);
+	printf("data->raydiry %f\n",data->raydiry );
+	printf("data->raydirx %f\n",data->raydirx );
 	while (data->drawstart < data->drawend )
 	{
-		texy = (int)data->texpos & 63;
-		data->texpos += data->texstep;
+	 	texy = (int)data->texpos & 63;
+	 	data->texpos += data->texstep;
 
-		if (data->side == 0 && data->raydirx > 0)
-        {
-			data->mlx_obj[data->drawstart * 1920
-				+ x] = data->so_data[64 * texy + data->tex_x];
-        }
-		else if (data->side == 0 && data->raydirx < 0)
-        {
-			data->mlx_obj[data->drawstart * 1920
-				+ x] = data->no_data[64 * texy + data->tex_x];
+	 	if (data->side == 0 && data->raydirx > 0)
+	     {
+	 		data->mlx_obj[data->drawstart * 1920
+	 			+ x] = data->so_data[64 * texy + data->tex_x];
+			printf("de: \n");
 
-        }
-		else if (data->side == 1 && data->raydiry > 0)
-        {
-			data->mlx_obj[data->drawstart * 1920
-				+ x] = data->ea_data[64 * texy + data->tex_x];
+	     }
+	 	else if (data->side == 0 && data->raydirx < 0)
+	     {
+	 		data->mlx_obj[data->drawstart * 1920
+	 			+ x] = data->no_data[64 * texy + data->tex_x];
+			printf("de: \n");
+			
+
+	     }
+	 	else if (data->side == 1 && data->raydiry > 0)
+	     {
+	 		data->mlx_obj[data->drawstart * 1920
+	 			+ x] = data->ea_data[64 * texy + data->tex_x];
         
-        }
-		else
-        {
-			data->mlx_obj[data->drawstart * 1920 + x] = data->we_data[64 * texy + data->tex_x];
-        }
-		data->drawstart++;
-	}
+	     }
+	 	else
+	     {
+	 		data->mlx_obj[data->drawstart * 1920 + x] = data->we_data[64 * texy + data->tex_x];
+	     }
+	 	data->drawstart++;
+	 }
 }
 
 
