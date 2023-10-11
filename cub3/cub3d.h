@@ -31,14 +31,9 @@ typedef struct s_mlx
 	void		*mlx_window;
 	void		*mlx_object;
 	int			*mlx_object_data;
-	void		*mlx_minimap;
-	int			*mlx_minimap_data;
 	int			bits_per_pixel;
 	int			size_line;
 	int			endian;
-	int			minimap_bpp;
-	int			minimap_size_line;
-	int			minimap_endian;
 	void		*mlx_img;
 }				t_mlx;
 

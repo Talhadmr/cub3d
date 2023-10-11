@@ -11,10 +11,11 @@ void fill_map(t_cub3d	*cub3d, char *str)
     cub3d->map.map[4] = get_next_line(3);
     cub3d->map.map[5] = get_next_line(3);
     cub3d->map.map[6] = get_next_line(3);
-    cub3d->map.no = strdup("color1.xpm");
-    cub3d->map.ea = strdup("color2.xpm");
-    cub3d->map.we = strdup("color3.xpm");
-    cub3d->map.so= strdup("color4.xpm");
+
+    cub3d->map.no = strdup("textures/text1.xpm");
+    cub3d->map.ea = strdup("textures/text2.xpm");
+    cub3d->map.we = strdup("textures/text3.xpm");
+    cub3d->map.so= strdup("textures/text4.xpm");
 
     int f0 = 90;
     int f1 = 0;
