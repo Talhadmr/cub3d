@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   pix.c                                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tdemir <tdemir@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/10/14 07:13:52 by tdemir            #+#    #+#             */
+/*   Updated: 2023/10/14 07:16:58 by tdemir           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 void	floor_and_ceiling(t_cub3d *cub3d)
@@ -35,9 +47,7 @@ int	draw(t_cub3d *cub3d)
 {
 	clear_img(cub3d);
 	floor_and_ceiling(cub3d);
-	
 	ray_casting(cub3d);
-
 	move(cub3d);
 	return (0);
 }

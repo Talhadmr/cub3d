@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: tdemir <tdemir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/10 15:43:54 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/10/10 16:23:30 by tdemir           ###   ########.fr       */
+/*   Created: 2023/10/14 07:13:42 by tdemir            #+#    #+#             */
+/*   Updated: 2023/10/14 07:18:27 by tdemir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
-#include <string.h>
+# include <string.h>
 
 # define RED "\x1b[31m"
 
@@ -123,7 +123,6 @@ typedef struct s_cub3d
 	t_mlx		mlx;
 	t_assets	assets;
 	t_rc		rc;
-	
 }				t_cub3d;
 
 void	game(t_cub3d *cub3d);
@@ -138,7 +137,7 @@ int		close_window(int key, void *cub3d);
 int		press(int key, void *cub3dd);
 int		release(int key, t_cub3d *cub3d);
 void	move(t_cub3d *cub3d);
-int	is_character(char c);
+int		is_character(char c);
 void	key_d1(t_cub3d *cub3d);
 void	key_a1(t_cub3d *cub3d);
 void	key_left(t_cub3d *cub3d);

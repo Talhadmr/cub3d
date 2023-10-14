@@ -1,4 +1,17 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ray_cast.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tdemir <tdemir@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/10/14 07:13:55 by tdemir            #+#    #+#             */
+/*   Updated: 2023/10/14 07:16:51 by tdemir           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
+
 void	direction(t_cub3d *cub3d)
 {
 	if (cub3d->rc.raydirx < 0)
@@ -26,6 +39,7 @@ void	direction(t_cub3d *cub3d)
 			* cub3d->rc.deltadisty;
 	}
 }
+
 void	wallhit(t_cub3d *cub3d)
 {
 	cub3d->rc.wall = 0;
@@ -62,12 +76,12 @@ void	raydist(t_cub3d *cub3d)
 	if (cub3d->rc.drawend >= 1080)
 		cub3d->rc.drawend = 1080 - 1;
 }
+
 void	ray_casting(t_cub3d *cub3d)
 {
 	int	x;
 
 	x = 0;
-	
 	while (x < 1920)
 	{
 		cub3d->rc.camerax = 2 * x / (double)1920 - 1;
