@@ -5,11 +5,123 @@ int ft_fill_map(t_map *map, char *argv)
     int fd;
 
     fd = open(argv, O_RDONLY);
+    ft_set_textures(map, fd);
+    close(fd);
+    fd = open(argv, O_RDONLY);
     ft_set_map(map, fd);
+    close(fd);
+    ft_check_map(map);
     return (0);
 }
 
+void ft_check_map(t_map *map)
+{
+    // int i;
+
+    // i = 0;
+    check_walls(map);
+    // while (map->c_map[i])
+    // {
+        
+    //     i++;
+    // }
+    
+}
+
+int check_walls(t_map *map)
+{
+    int i;
+    int j;
+
+    i = 0;
+    while(map->c_map[0][i])
+    {
+        if (map->c_map[0][i] == 1)
+            i++;
+        else if (map->c_map[0][i] == ' ')
+        {
+            j = 0;
+            while (map->c_map[j][i])
+            {
+                if (map->c_map[j][i] == 1)
+                    break;
+                else if (map->c_map[j][i] == ' ')
+                    j++;
+                else
+                    return (printf("Map is not surrounded by walls\n"));
+            }
+        }
+        else
+            return (printf("Map is not surrounded by walls\n"));
+    }
+    i = 0;
+    while(map->c_map[map->map_len - 1][i])
+    {
+        if (map->c_map[map->map_len - 1][i] == 1)
+            i++;
+        else if (map->c_map[map->map_len - 1][i] == ' ')
+        {
+            j = map->map_len - 1;
+            while (map->c_map[j][i])
+            {
+                if (map->c_map[j][i] == 1)
+                    break;
+                else if (map->c_map[j][i] == ' ')
+                    j--;
+                else
+                    return (printf("Map is not surrounded by walls\n"));
+            }
+        }
+        else
+            return (printf("Map is not surrounded by walls\n"));
+    }
+    i = 0;
+    while(map->c_map[i][0])
+    {
+        if (map->c_map[i][0] == 1)
+            i++;
+        else if (map->c_map[i][0] == ' ')
+        {
+            j = 0;
+            while (map->c_map[i][j])
+            {
+                if (map->c_map[i][j] == 1)
+                    break;
+                else if (map->c_map[i][j] == ' ')
+                    j++;
+                else
+                    return (printf("Map is not surrounded by walls\n"));
+            }
+        }
+        else
+            return (printf("Map is not surrounded by walls\n"));
+    }
+    return(printf("Map IS surrounded by walls\n"));
+}
+
 void ft_set_map(t_map *map, int fd)
+{
+    char *line;
+    int i;
+
+    line = get_next_line(fd);
+    i = 0;
+    while (line != NULL)
+    {
+        if (map_start(line) == 1)
+        {
+            map->map[i] = ft_strdup(line);
+            map->c_map[i] = ft_strdup(line);
+            i++;
+        }
+        line = get_next_line(fd);
+    }
+    i = -1;
+    while (map->map[++i])
+        printf("%s\n", map->map[i]);
+}
+
+void ft_set_textures(t_map *map, int fd)
 {
     char *line;
 
@@ -17,8 +129,38 @@ void ft_set_map(t_map *map, int fd)
     while (line != NULL)
     {
         check_texture(line, map);
+        if (map_start(line) == 1)
+        {
+            map->map_len = 1;
+            break ;
+        }
         line = get_next_line(fd);
     }
+    line = get_next_line(fd);
+    while (line != NULL && map_start(line) == 1)
+    {
+        map->map_len++;
+        line = get_next_line(fd);
+    }
+    map->map = malloc(sizeof(char *) * map->map_len + 1);
+    map->c_map = malloc(sizeof(char *) * map->map_len + 1);
+    if (!map->map || !map->c_map)
+        return ;
+    printf("map size %d\n", map->map_len);
+    printf("textures done\n");
+}
+
+int map_start(char *line)
+{
+    int i;
+
+    i = 0;
+    while (line[i] && (line[i] == 32 || (line[i] >= 9 && line[i] <= 13)))
+        i++;
+    printf("in map start, %d i %c\n", i,  line[i]);
+    if (line[i] == 1)
+        return (1);
+    return(0);
 }
 
 void check_texture(char *line, t_map *map)
@@ -168,7 +310,7 @@ void set_floor_color(char *s, t_map *map)
      printf("Floor %ld\n", map->floor_color);
 }
 
-void set_map_size(char *s, t_map *map)
+void set_map_size(char *s, t_map *map) //I DONT NEED IT I GUESS
 {
     int i;
     int j;
@@ -180,7 +322,7 @@ void set_map_size(char *s, t_map *map)
     while (s[++i] && (s[i] >= '0' && s[i] <= '9'))
         size[++j] = s[i];
     size[++j] = 0;
-    map->width = ft_atoi(size);
+    //map->width = ft_atoi(size);
     while (s[i] && (s[i] == ' ' || (s[i] >= 9 && s[i] <= 13)))
         i++;
     //free(size);

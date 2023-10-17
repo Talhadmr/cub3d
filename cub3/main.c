@@ -43,8 +43,14 @@ void fill_map(t_cub3d	*cub3d, char *str)
 int	main(int ac, char **av)
 {
 	t_cub3d	*cub3d;
+    t_map map;
 	(void)ac;
 	cub3d = (t_cub3d *)malloc(sizeof(t_cub3d));
-	fill_map(cub3d, av[1]);
+
+    if (ft_check_input(ac, av) != 1)
+        return (0);
+    printf("start processing map\n");
+    ft_fill_map(&map, av[1]);
+	//fill_map(cub3d, av[1]);
 	game(cub3d);
 }

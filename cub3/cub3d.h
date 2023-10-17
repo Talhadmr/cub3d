@@ -46,9 +46,18 @@ typedef struct s_map
 	char		**map;
 	long		floor_color;
 	long		ceiling_color;
-	int			width;
+	//int			width;
 	int			height;
 	char		user_type;
+
+	int map_len;
+	char **c_map;
+	short f_red;
+	short f_green;
+	short f_blue;
+	short c_red;
+	short c_green;
+	short c_blue;
 }				t_map;
 
 typedef struct s_assets
@@ -158,6 +167,10 @@ void set_map_val2(char *str, char *s, t_map *map);
 void set_map_size(char *s, t_map *map);
 void set_floor_color(char *s, t_map *map);
 void set_ceiling_color(char *s, t_map *map);
+void ft_set_textures(t_map *map, int fd);
+int map_start(char *line);
+void ft_check_map(t_map *map);
+int check_walls(t_map *map);
 //utils
 int	ft_atoi(const char *str);
 int str_cmp(char *s1, char *s2);
