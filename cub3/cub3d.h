@@ -142,4 +142,24 @@ void	key_d1(t_cub3d *cub3d);
 void	key_a1(t_cub3d *cub3d);
 void	key_left(t_cub3d *cub3d);
 void	key_right(t_cub3d *cub3d);
+
+
+
+//CHECK
+//check input
+int ft_check_input(int argc, char **argv);
+int	ft_check_ext(char *file, int len, char *ext);
+//check map
+int ft_fill_map(t_map *map, char *argv);
+void ft_set_map(t_map *map, int fd);
+void check_texture(char *line, t_map *map);
+void set_map_val(char *str, char *line, t_map *map);
+void set_map_val2(char *str, char *s, t_map *map);
+void set_map_size(char *s, t_map *map);
+void set_floor_color(char *s, t_map *map);
+void set_ceiling_color(char *s, t_map *map);
+//utils
+int	ft_atoi(const char *str);
+int str_cmp(char *s1, char *s2);
+char	*ft_strdup(char *s1);
 #endif
