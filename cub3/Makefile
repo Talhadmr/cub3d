@@ -1,4 +1,4 @@
-SRCS = gnl/get_next_line_utils.c gnl/get_next_line.c main.c init.c utils_game.c pix.c ray_cast.c utils_raycasting.c control.c act.c act1.c   	check/check_input.c check/check_map.c check/utils.c
+SRCS = gnl/get_next_line_utils.c gnl/get_next_line.c main.c init.c utils_game.c pix.c ray_cast.c utils_raycasting.c control.c act.c act1.c   	check/check_input.c check/check_map.c check/utils.c check/walls.c
 
 CC = gcc
 

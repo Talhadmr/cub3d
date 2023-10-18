@@ -46,7 +46,7 @@ typedef struct s_map
 	char		**map;
 	long		floor_color;
 	long		ceiling_color;
-	//int			width;
+	int			width; //
 	int			height;
 	char		user_type;
 
@@ -175,4 +175,14 @@ int check_walls(t_map *map);
 int	ft_atoi(const char *str);
 int str_cmp(char *s1, char *s2);
 char	*ft_strdup(char *s1);
+//walls
+int	check_up_wall(t_map *map);
+int	check_down_wall(t_map *map);
+int	check_left_wall(t_map *map);
+int	check_right_wall(t_map *map);
+int check_char(t_map *map);
+
+
+//control.c
+void free_game(t_cub3d *cub3d);
 #endif

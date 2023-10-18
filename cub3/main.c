@@ -43,14 +43,19 @@ void fill_map(t_cub3d	*cub3d, char *str)
 int	main(int ac, char **av)
 {
 	t_cub3d	*cub3d;
-    t_map map;
+    //t_map map;
 	(void)ac;
 	cub3d = (t_cub3d *)malloc(sizeof(t_cub3d));
 
     if (ft_check_input(ac, av) != 1)
         return (0);
     printf("start processing map\n");
-    ft_fill_map(&map, av[1]);
+    ft_fill_map(&cub3d->map, av[1]);
 	//fill_map(cub3d, av[1]);
+    printf("in game\n");
+    printf("floor %ld, ceiling %ld\nNO %s, EA %s, WE %s, SO %s\n", cub3d->map.floor_color, cub3d->map.ceiling_color, cub3d->map.no, cub3d->map.ea, cub3d->map.we, cub3d->map.so);
+    int i = -1;
+    while (++i < cub3d->map.map_len)
+        printf("%s", cub3d->map.map[i]);
 	game(cub3d);
 }
