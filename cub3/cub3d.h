@@ -14,14 +14,13 @@
 # define CUB3D_H
 
 # include "gnl/get_next_line.h"
-
 # include "mlx/mlx.h"
 # include <fcntl.h>
 # include <math.h>
 # include <stdio.h>
 # include <stdlib.h>
-# include <unistd.h>
 # include <string.h>
+# include <unistd.h>
 
 # define RED "\x1b[31m"
 
@@ -46,18 +45,13 @@ typedef struct s_map
 	char		**map;
 	long		floor_color;
 	long		ceiling_color;
-	int			width; //
+	int			width;
 	int			height;
 	char		user_type;
 
-	int map_len;
-	char **c_map;
-	short f_red;
-	short f_green;
-	short f_blue;
-	short c_red;
-	short c_green;
-	short c_blue;
+	int			map_len;
+	char		*line;
+
 }				t_map;
 
 typedef struct s_assets
@@ -134,55 +128,63 @@ typedef struct s_cub3d
 	t_rc		rc;
 }				t_cub3d;
 
-void	game(t_cub3d *cub3d);
-void	img(t_cub3d *cub3d);
-void	user_location(t_cub3d *cub3d);
-void	camera(t_cub3d *cub3d);
-int		draw(t_cub3d *cub3d);
-void	set_variables(t_cub3d *cub3d);
-void	ray_casting(t_cub3d *cub3d);
-void	texture(t_cub3d *cub3d, int x);
-int		close_window(int key, void *cub3d);
-int		press(int key, void *cub3dd);
-int		release(int key, t_cub3d *cub3d);
-void	move(t_cub3d *cub3d);
-int		is_character(char c);
-void	key_d1(t_cub3d *cub3d);
-void	key_a1(t_cub3d *cub3d);
-void	key_left(t_cub3d *cub3d);
-void	key_right(t_cub3d *cub3d);
-
-
+void			game(t_cub3d *cub3d);
+void			img(t_cub3d *cub3d);
+void			user_location(t_cub3d *cub3d);
+void			camera(t_cub3d *cub3d);
+int				draw(t_cub3d *cub3d);
+void			set_variables(t_cub3d *cub3d);
+void			ray_casting(t_cub3d *cub3d);
+void			texture(t_cub3d *cub3d, int x);
+int				close_window(int key, void *cub3d);
+int				press(int key, void *cub3dd);
+int				release(int key, t_cub3d *cub3d);
+void			move(t_cub3d *cub3d);
+int				is_character(char c);
+void			key_d1(t_cub3d *cub3d);
+void			key_a1(t_cub3d *cub3d);
+void			key_left(t_cub3d *cub3d);
+void			key_right(t_cub3d *cub3d);
 
 //CHECK
 //check input
-int ft_check_input(int argc, char **argv);
-int	ft_check_ext(char *file, int len, char *ext);
+int				ft_check_input(int argc, char **argv);
+int				ft_check_ext(char *file, int len, char *ext);
 //check map
-int ft_fill_map(t_map *map, char *argv);
-void ft_set_map(t_map *map, int fd);
-void check_texture(char *line, t_map *map);
-void set_map_val(char *str, char *line, t_map *map);
-void set_map_val2(char *str, char *s, t_map *map);
-void set_map_size(char *s, t_map *map);
-void set_floor_color(char *s, t_map *map);
-void set_ceiling_color(char *s, t_map *map);
-void ft_set_textures(t_map *map, int fd);
-int map_start(char *line);
-void ft_check_map(t_map *map);
-int check_walls(t_map *map);
+int				ft_fill_map(t_map *map, char *argv);
+
+void			set_map_val(char *str, t_map *map);
+void			set_map_val2(char *str, char *s, t_map *map);
+int				map_start(char *line);
+int				check_walls(t_map *map);
 //utils
-int	ft_atoi(const char *str);
-int str_cmp(char *s1, char *s2);
-char	*ft_strdup(char *s1);
+int				ft_atoi(const char *str);
+int				str_cmp(char *s1, char *s2);
+char			*ft_strdup(char *s1);
 //walls
-int	check_up_wall(t_map *map);
-int	check_down_wall(t_map *map);
-int	check_left_wall(t_map *map);
-int	check_right_wall(t_map *map);
-int check_char(t_map *map);
+void			check_left_wall(t_map *map);
+void			check_right_wall(t_map *map);
+void			check_char(t_map *map);
+int				right_wall(t_map *map, int i, int len);
 
+//wall.c
+int				wall_check(t_map *map, char c);
+int				down_wall(t_map *map, int i);
+void			check_down_wall(t_map *map);
+void			check_up_wall(t_map *map);
 
-//control.c
-void free_game(t_cub3d *cub3d);
+//map.c
+void			ft_set_map(t_map *map, int fd);
+void			check_texture(t_map *map);
+void			ft_set_textures(t_map *map, int fd);
+void			set_floor_ceiling(char *s, t_map *map, char c);
+int				set_color(int i, char *s, short *c, t_map *map);
+
+//more_utils.c
+void			ft_init_texture(t_map *map);
+void			clear_textures(t_map *map, char *error);
+void			clear_map(t_map *map, char *error);
+void			set_map_size(char *s, t_map *map);
+void			ft_check_map(t_map *map);
+
 #endif

@@ -42,16 +42,16 @@ void	texture(t_cub3d *cub3d, int x)
 		texy = (int)cub3d->rc.texpos & 63;
 		cub3d->rc.texpos += cub3d->rc.texstep;
 		if (cub3d->rc.side == 0 && cub3d->rc.raydirx > 0)
-			cub3d->mlx.mlx_object_data[cub3d->rc.drawstart * 1920
+			cub3d->mlx.mlx_object_data[cub3d->rc.drawstart * cub3d->map.width
 				+ x] = cub3d->assets.so_data[64 * texy + cub3d->rc.tex_x];
 		else if (cub3d->rc.side == 0 && cub3d->rc.raydirx < 0)
-			cub3d->mlx.mlx_object_data[cub3d->rc.drawstart * 1920
+			cub3d->mlx.mlx_object_data[cub3d->rc.drawstart * cub3d->map.width
 				+ x] = cub3d->assets.no_data[64 * texy + cub3d->rc.tex_x];
 		else if (cub3d->rc.side == 1 && cub3d->rc.raydiry > 0)
-			cub3d->mlx.mlx_object_data[cub3d->rc.drawstart * 1920
+			cub3d->mlx.mlx_object_data[cub3d->rc.drawstart * cub3d->map.width
 				+ x] = cub3d->assets.ea_data[64 * texy + cub3d->rc.tex_x];
 		else
-			cub3d->mlx.mlx_object_data[cub3d->rc.drawstart * 1920
+			cub3d->mlx.mlx_object_data[cub3d->rc.drawstart * cub3d->map.width
 				+ x] = cub3d->assets.we_data[64 * texy + cub3d->rc.tex_x];
 		cub3d->rc.drawstart++;
 	}

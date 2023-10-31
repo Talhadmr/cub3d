@@ -69,15 +69,13 @@ void	user_location(t_cub3d *cub3d)
 void	game(t_cub3d *cub3d)
 {
 	cub3d->mlx.mlx_init = mlx_init();
-	cub3d->mlx.mlx_window = mlx_new_window(cub3d->mlx.mlx_init, 1920, 1080,
-			"CUB3D");
-	cub3d->mlx.mlx_object = mlx_new_image(cub3d->mlx.mlx_init, 1920, 1080);
+	cub3d->mlx.mlx_window = mlx_new_window(cub3d->mlx.mlx_init,
+			cub3d->map.width, cub3d->map.height, "CUB3D");
+	cub3d->mlx.mlx_object = mlx_new_image(cub3d->mlx.mlx_init, cub3d->map.width,
+			cub3d->map.height);
 	cub3d->mlx.mlx_object_data = (int *)mlx_get_data_addr(cub3d->mlx.mlx_object,
-			&cub3d->mlx.bits_per_pixel,
-			&cub3d->mlx.size_line,
+			&cub3d->mlx.bits_per_pixel, &cub3d->mlx.size_line,
 			&cub3d->mlx.endian);
-	cub3d->map.width = 1920;
-	cub3d->map.height = 1080;
 	set_variables(cub3d);
 	mlx_loop_hook(cub3d->mlx.mlx_init, &draw, cub3d);
 	mlx_hook(cub3d->mlx.mlx_window, 2, 0, &press, cub3d);

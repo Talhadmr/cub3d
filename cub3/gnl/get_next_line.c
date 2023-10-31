@@ -38,8 +38,8 @@ char	*ft_buff(int fd, char *str)
 }
 
 char	*get_next_line(int fd)
-{	
-	char		*line;	
+{
+	char		*line;
 	static char	*str;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)

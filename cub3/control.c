@@ -15,19 +15,8 @@
 int	close_window(int key, void *cub3d)
 {
 	(void)key;
-	free_game((t_cub3d *)cub3d);
+	(void)cub3d;
 	exit(0);
-}
-
-void free_game(t_cub3d *cub3d)
-{
-	int i;
-	i = -1;
-	while(++i < cub3d->map.map_len)
-	{
-		free(cub3d->map.map[i]);
-		free(cub3d->map.c_map[i]);
-	}
 }
 
 int	press(int key, void *cub3dd)

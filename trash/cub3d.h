@@ -89,7 +89,6 @@ typedef struct s_data
 	void		*ea;
 }t_data;
 
-void fill_map(t_data *data, char *str);
 void player_location(t_data *data);
 void ft_cam(t_data *data);
 void destroy_win(t_data *data);

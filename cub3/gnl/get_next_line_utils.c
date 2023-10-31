@@ -63,7 +63,7 @@ char	*ft_strchr(char *str, int c)
 		return ((char *)&str[ft_strlen(str)]);
 	while (str[i] != '\0')
 	{
-		if (str[i] == (char) c)
+		if (str[i] == (char)c)
 			return ((char *)&str[i]);
 		i++;
 	}
@@ -108,7 +108,7 @@ char	*ft_last_str(char *str)
 	{
 		free(str);
 		return (NULL);
-	}	
+	}
 	my_line = (char *)malloc(sizeof(char) * (ft_strlen(str) - c + 1));
 	if (!my_line)
 		return (NULL);

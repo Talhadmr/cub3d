@@ -82,9 +82,9 @@ void	ray_casting(t_cub3d *cub3d)
 	int	x;
 
 	x = 0;
-	while (x < 1920)
+	while (x < cub3d->map.width)
 	{
-		cub3d->rc.camerax = 2 * x / (double)1920 - 1;
+		cub3d->rc.camerax = 2 * x / (double)cub3d->map.width - 1;
 		cub3d->rc.raydirx = cub3d->rc.dirx + cub3d->rc.planex
 			* cub3d->rc.camerax;
 		cub3d->rc.raydiry = cub3d->rc.diry + cub3d->rc.planey

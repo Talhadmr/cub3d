@@ -121,8 +121,8 @@ void	ft_raycasting(t_data *data)
 	int	x;
 
 	x = 0;
-	
-	while (x < 1920)
+
+	while (x < data->map_width)
 	{
 		data->camerax = 2 * x / (double)1920 - 1;
 		data->raydirx = data->dirx + data->planex * data->camerax;

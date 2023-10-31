@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ykissiko <ykissiko@student.42istanbul.com  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/10/31 15:57:30 by ykissiko          #+#    #+#             */
+/*   Updated: 2023/10/31 15:57:32 by ykissiko         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../cub3d.h"
 
 int	ft_atoi(const char *str)
@@ -27,19 +39,19 @@ int	ft_atoi(const char *str)
 	return (num);
 }
 
-int str_cmp(char *s1, char *s2)
+int	str_cmp(char *s1, char *s2)
 {
-    int i;
+	int	i;
 
-    i = 0;
-    while (s1[i])
-    {
-        if (s1[i] == s2[i])
-            i++;
-        else
-            return(0); 
-    }
-    return (1);
+	i = 0;
+	while (s1[i])
+	{
+		if (s1[i] == s2[i])
+			i++;
+		else
+			return (0);
+	}
+	return (1);
 }
 
 char	*ft_strdup(char *s1)
