@@ -43,7 +43,10 @@ int	map_start(char *line)
 	i = 0;
 	while (line[i] && (line[i] == 32 || (line[i] >= 9 && line[i] <= 13)))
 		i++;
-	if (line[i] == '1')
+	if (line[i] == '1' || line[i] == '0')
+		return (1);
+	else if ((line[i] == 'N' || line[i] == 'S' || line[i] == 'E'
+			|| line[i] == 'W') && (line[i + 1] == '0' || line[i + 1] == '1'))
 		return (1);
 	return (0);
 }
@@ -85,8 +88,6 @@ void	set_map_val2(char *str, char *s, t_map *map)
 		map->we = ft_strdup(s);
 	else if (str_cmp(str, "EA"))
 		map->ea = ft_strdup(s);
-	else if (str_cmp(str, "R"))
-		set_map_size(s, map);
 	else if (str_cmp(str, "F"))
 		set_floor_ceiling(s, map, 'F');
 	else if (str_cmp(str, "C"))

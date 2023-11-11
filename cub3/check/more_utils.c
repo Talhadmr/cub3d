@@ -18,10 +18,11 @@ void	ft_init_texture(t_map *map)
 	map->floor_color = -1;
 	map->width = 1920;
 	map->height = 1080;
-	map->ea = malloc(sizeof(char));
-	map->we = malloc(sizeof(char));
-	map->so = malloc(sizeof(char));
-	map->no = malloc(sizeof(char));
+	map->ea = ft_calloc(1, sizeof(char));
+	map->we = ft_calloc(1, sizeof(char));
+	map->so = ft_calloc(1, sizeof(char));
+	map->no = ft_calloc(1, sizeof(char));
+	map->player = 0;
 }
 
 void	clear_map(t_map *map, char *error)
@@ -47,35 +48,9 @@ void	clear_textures(t_map *map, char *error)
 		free(map->we);
 	if (map->no)
 		free(map->no);
-	if (map->line)
+	if (map->line && map->line[0])
 		free(map->line);
 	exit(0);
-}
-
-void	set_map_size(char *s, t_map *map)
-{
-	int		i;
-	int		j;
-	char	*size;
-
-	i = -1;
-	j = -1;
-	size = malloc(sizeof(char) * ft_strlen(s));
-	while (s[++i] && (s[i] >= '0' && s[i] <= '9'))
-		size[++j] = s[i];
-	size[++j] = 0;
-	map->width = ft_atoi(size);
-	while (s[i] && (s[i] == ' ' || (s[i] >= 9 && s[i] <= 13)))
-		i++;
-	free(size);
-	size = malloc(sizeof(char) * ft_strlen(s));
-	j = -1;
-	i--;
-	while (s[++i] && (s[i] >= '0' && s[i] <= '9'))
-		size[++j] = s[i];
-	size[++j] = 0;
-	map->height = ft_atoi(size);
-	free(size);
 }
 
 void	ft_check_map(t_map *map)
@@ -85,4 +60,6 @@ void	ft_check_map(t_map *map)
 	check_left_wall(map);
 	check_right_wall(map);
 	check_char(map);
+	if (map->player != 1)
+		clear_map(map, "Wrong number of players\n");
 }

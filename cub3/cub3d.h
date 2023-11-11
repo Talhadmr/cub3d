@@ -51,6 +51,7 @@ typedef struct s_map
 
 	int			map_len;
 	char		*line;
+	int			player;
 
 }				t_map;
 
@@ -150,6 +151,9 @@ void			key_right(t_cub3d *cub3d);
 //check input
 int				ft_check_input(int argc, char **argv);
 int				ft_check_ext(char *file, int len, char *ext);
+void			set_floor_ceiling(char *s, t_map *map, char c);
+int				set_color(int i, char *s, short *c, t_map *map);
+
 //check map
 int				ft_fill_map(t_map *map, char *argv);
 
@@ -177,14 +181,19 @@ void			check_up_wall(t_map *map);
 void			ft_set_map(t_map *map, int fd);
 void			check_texture(t_map *map);
 void			ft_set_textures(t_map *map, int fd);
-void			set_floor_ceiling(char *s, t_map *map, char c);
-int				set_color(int i, char *s, short *c, t_map *map);
+void			check_after_map(t_map *map, int fd);
+char			*str_subjoin(char *s, char c);
 
 //more_utils.c
 void			ft_init_texture(t_map *map);
 void			clear_textures(t_map *map, char *error);
 void			clear_map(t_map *map, char *error);
-void			set_map_size(char *s, t_map *map);
 void			ft_check_map(t_map *map);
+
+//libft_utils
+void			*ft_memset(void *b, int c, size_t len);
+void			ft_bzero(void *s, size_t n);
+void			*ft_calloc(size_t count, size_t size);
+int				empty_line(t_map *map);
 
 #endif

@@ -55,8 +55,8 @@ void	user_location(t_cub3d *cub3d)
 			if (cub3d->map.map[x][y] == 'N' || cub3d->map.map[x][y] == 'S'
 				|| cub3d->map.map[x][y] == 'W' || cub3d->map.map[x][y] == 'E')
 			{
-				cub3d->rc.posx = x;
-				cub3d->rc.posy = y;
+				cub3d->rc.posx = x + 0.5;
+				cub3d->rc.posy = y + 0.5;
 				cub3d->map.user_type = cub3d->map.map[x][y];
 				return ;
 			}

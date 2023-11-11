@@ -92,10 +92,14 @@ void	check_char(t_map *map)
 		while (map->map[i][j])
 		{
 			if (map->map[i][j] == '1' || map->map[i][j] == '0'
-				|| map->map[i][j] == 'N' || map->map[i][j] == 'S'
-				|| map->map[i][j] == 'E' || map->map[i][j] == 'W'
 				|| map->map[i][j] == ' ')
 				j++;
+			else if (map->map[i][j] == 'N' || map->map[i][j] == 'S'
+				|| map->map[i][j] == 'E' || map->map[i][j] == 'W')
+			{
+				map->player++;
+				j++;
+			}
 			else if (map->map[i][j] == '\n')
 				break ;
 			else

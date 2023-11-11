@@ -42,3 +42,46 @@ int	ft_check_ext(char *file, int len, char *ext)
 	}
 	return (1);
 }
+
+void	set_floor_ceiling(char *s, t_map *map, char c)
+{
+	int		i;
+	short	red;
+	short	green;
+	short	blue;
+
+	i = -1;
+	i = set_color(i, s, &red, map) - 1;
+	i = set_color(i, s, &green, map) - 1;
+	i = set_color(i, s, &blue, map) - 1;
+	if (c == 'F')
+		map->floor_color = (red << 16) + (green << 8) + blue;
+	else if (c == 'C')
+		map->ceiling_color = (red << 16) + (green << 8) + blue;
+}
+
+int	set_color(int i, char *s, short *c, t_map *map)
+{
+	char	*color;
+
+	color = ft_calloc(1, sizeof(char));
+	while (s[++i])
+	{
+		if (s[i] >= '0' && s[i] <= '9')
+			color = str_subjoin(color, s[i]);
+		else if (s[i] == ' ' || (s[i] >= 9 && s[i] <= 13) || s[i] == ',')
+			break ;
+		else
+		{
+			free(color);
+			clear_textures(map, "Wrong colors\n");
+		}
+	}
+	while (s[i] && (s[i] == ' ' || (s[i] >= 9 && s[i] <= 13) || s[i] == ','))
+		i++;
+	*c = ft_atoi(color);
+	free(color);
+	if (!(*c >= 0 && *c <= 255))
+		clear_textures(map, "Wrong colors\n");
+	return (i);
+}
