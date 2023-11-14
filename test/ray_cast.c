@@ -99,12 +99,17 @@ void	ray_casting(t_cub3d *cub3d)
 			cub3d->rc.deltadisty = 1e30;
 		else
 			cub3d->rc.deltadisty = fabs(1 / cub3d->rc.raydiry);
-		direction(cub3d);
-		wallhit(cub3d);
-		raydist(cub3d);
-		texture(cub3d, x);
+		ray_casting_send(cub3d, x);
 		x++;
 	}
 	mlx_put_image_to_window(cub3d->mlx.mlx_init, cub3d->mlx.mlx_window,
 		cub3d->mlx.mlx_object, 0, 0);
+}
+
+void	ray_casting_send(t_cub3d *cub3d, int x)
+{
+	direction(cub3d);
+	wallhit(cub3d);
+	raydist(cub3d);
+	texture(cub3d, x);
 }

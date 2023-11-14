@@ -95,7 +95,7 @@ void	check_char(t_map *map)
 				|| map->map[i][j] == ' ')
 				j++;
 			else if (map->map[i][j] == 'N' || map->map[i][j] == 'S'
-				|| map->map[i][j] == 'E' || map->map[i][j] == 'W')
+					|| map->map[i][j] == 'E' || map->map[i][j] == 'W')
 			{
 				map->player++;
 				j++;
@@ -106,5 +106,33 @@ void	check_char(t_map *map)
 				clear_map(map, "Map has some undefined chars");
 		}
 		i++;
+	}
+}
+
+void	check_spaces(t_map *map)
+{
+	int	i;
+	int	j;
+
+	i = -1;
+	while (map->map[++i] && i < map->map_len - 1)
+	{
+		j = -1;
+		while (map->map[i][++j])
+		{
+			if (map->map[i][j] == ' ')
+			{
+				if (j > 0 && map->map[i][j - 1] && !the_sign(map->map[i][j
+						- 1]))
+					clear_map(map, "Map has space in the wrong place");
+				if (map->map[i][j + 1] && !the_sign(map->map[i][j + 1]))
+					clear_map(map, "Map has space in the wrong place");
+				if (i > 0 && map->map[i - 1][j] && !the_sign(map->map[i
+						- 1][j]))
+					clear_map(map, "Map has space in the wrong place");
+				if (map->map[i + 1][j] && !the_sign(map->map[i + 1][j]))
+					clear_map(map, "Map has space in the wrong place");
+			}
+		}
 	}
 }

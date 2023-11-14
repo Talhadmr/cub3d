@@ -71,3 +71,10 @@ char	*ft_strdup(char *s1)
 	str[i] = '\0';
 	return (str);
 }
+
+int	the_sign(char c)
+{
+	if (c == ' ' || c == '1' || c == '\n' || c == 0)
+		return (1);
+	return (0);
+}

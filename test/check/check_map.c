@@ -81,13 +81,25 @@ void	set_map_val(char *str, t_map *map)
 void	set_map_val2(char *str, char *s, t_map *map)
 {
 	if (str_cmp(str, "NO"))
+	{
+		free(map->no);
 		map->no = ft_strdup(s);
+	}
 	else if (str_cmp(str, "SO"))
+	{
+		free(map->so);
 		map->so = ft_strdup(s);
+	}
 	else if (str_cmp(str, "WE"))
+	{
+		free(map->we);
 		map->we = ft_strdup(s);
+	}
 	else if (str_cmp(str, "EA"))
+	{
+		free(map->ea);
 		map->ea = ft_strdup(s);
+	}
 	else if (str_cmp(str, "F"))
 		set_floor_ceiling(s, map, 'F');
 	else if (str_cmp(str, "C"))

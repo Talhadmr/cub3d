@@ -60,6 +60,7 @@ void	ft_check_map(t_map *map)
 	check_left_wall(map);
 	check_right_wall(map);
 	check_char(map);
+	check_spaces(map);
 	if (map->player != 1)
 		clear_map(map, "Wrong number of players\n");
 }

@@ -21,6 +21,5 @@ int	main(int ac, char **av)
 	if (ft_check_input(ac, av) != 1)
 		return (0);
 	ft_fill_map(&cub3d->map, av[1]);
-	printf("map filled, game starting\n");
 	game(cub3d);
 }

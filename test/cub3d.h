@@ -136,6 +136,7 @@ void			camera(t_cub3d *cub3d);
 int				draw(t_cub3d *cub3d);
 void			set_variables(t_cub3d *cub3d);
 void			ray_casting(t_cub3d *cub3d);
+void			ray_casting_send(t_cub3d *cub3d, int x);
 void			texture(t_cub3d *cub3d, int x);
 int				close_window(int key, void *cub3d);
 int				press(int key, void *cub3dd);
@@ -161,15 +162,19 @@ void			set_map_val(char *str, t_map *map);
 void			set_map_val2(char *str, char *s, t_map *map);
 int				map_start(char *line);
 int				check_walls(t_map *map);
+
 //utils
 int				ft_atoi(const char *str);
 int				str_cmp(char *s1, char *s2);
 char			*ft_strdup(char *s1);
+int				the_sign(char c);
+
 //walls
 void			check_left_wall(t_map *map);
 void			check_right_wall(t_map *map);
 void			check_char(t_map *map);
 int				right_wall(t_map *map, int i, int len);
+void			check_spaces(t_map *map);
 
 //wall.c
 int				wall_check(t_map *map, char c);
