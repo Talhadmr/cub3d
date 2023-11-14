@@ -20,7 +20,7 @@
 #  define BUFFER_SIZE 15
 # endif
 
-size_t	ft_strlen(char *str);
+int	ft_strlen(char *str);
 char	*ft_buff(int fd, char *str);
 char	*get_next_line(int fd);
 char	*ft_strjoin(char *str, char *buff);

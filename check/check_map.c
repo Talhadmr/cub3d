@@ -28,6 +28,14 @@ int	ft_fill_map(t_map *map, char *argv)
 	ft_init_texture(map);
 	ft_set_textures(map, fd);
 	close(fd);
+	if (map->map_len > 0)
+	{
+		map->map = malloc(sizeof(char *) * map->map_len + 1);
+		if (!map->map)
+			return (0);
+	}
+	else
+		clear_textures(map, "No map in the file\n");
 	ft_check_setting(map);
 	fd = open(argv, O_RDONLY);
 	ft_set_map(map, fd);

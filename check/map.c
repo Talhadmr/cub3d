@@ -54,9 +54,6 @@ void	ft_set_textures(t_map *map, int fd)
 		map->line = get_next_line(fd);
 	}
 	check_after_map(map, fd);
-	map->map = malloc(sizeof(char *) * map->map_len + 1);
-	if (!map->map)
-		return ;
 	free(map->line);
 }
 

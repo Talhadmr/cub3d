@@ -161,7 +161,6 @@ int				ft_fill_map(t_map *map, char *argv);
 void			set_map_val(char *str, t_map *map);
 void			set_map_val2(char *str, char *s, t_map *map);
 int				map_start(char *line);
-int				check_walls(t_map *map);
 
 //utils
 int				ft_atoi(const char *str);
@@ -194,6 +193,7 @@ void			ft_init_texture(t_map *map);
 void			clear_textures(t_map *map, char *error);
 void			clear_map(t_map *map, char *error);
 void			ft_check_map(t_map *map);
+void check_all_walls(t_map *map);
 
 //libft_utils
 void			*ft_memset(void *b, int c, size_t len);
