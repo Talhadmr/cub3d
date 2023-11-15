@@ -43,22 +43,53 @@ void	check_left_wall(t_map *map)
 
 void	check_right_wall(t_map *map)
 {
-	int	i;
-	int	len;
+	// int	i;
+	// int	len;
 
-	i = 0;
-	len = ft_strlen(map->map[i]) - 1;
-	while (map->map[i][len] && i < map->map_len - 1)
+	// i = 0;
+	// len = ft_strlen(map->map[i]) - 1;
+	// while (map->map[i][len] && i < map->map_len - 1)
+	// {
+	// 	if (map->map[i][len] == '\n')
+	// 		len--;
+	// 	if (map->map[i][len] == '1')
+	// 		i++;
+	// 	else if (map->map[i][len] == ' ')
+	// 		right_wall(map, i, len);
+	// 	else
+	// 		clear_map(map, "Map is not surrounded by walls\n");
+	// 	len = ft_strlen(map->map[i]) - 1;
+	// }
+
+	int i = 0;
+	int j;
+	int y;
+
+	y = ft_strlen(map->map[0]) - 2;
+	while (i < map->map_len && map->map[i])
 	{
-		if (map->map[i][len] == '\n')
-			len--;
-		if (map->map[i][len] == '1')
-			i++;
-		else if (map->map[i][len] == ' ')
-			right_wall(map, i, len);
-		else
-			clear_map(map, "Map is not surrounded by walls\n");
-		len = ft_strlen(map->map[i]) - 1;
+		j = ft_strlen(map->map[i]) - 1;
+		if (map->map[i][j] == '\n')
+			j--;
+		printf("j = %d ", j);
+		while (map->map[i][j] && map->map[i][j] == ' ')
+			j--;
+		if (i - 1 >= 0 && ft_strlen(map->map[i]) > ft_strlen(map->map[i - 1]))
+			y = ft_strlen(map->map[i - 1]) - 2;
+		if (i + 1 < map->map_len - 1 && ft_strlen(map->map[i]) > ft_strlen(map->map[i + 1]) && ft_strlen(map->map[i + 1]) < ft_strlen(map->map[i - 1]))
+			y = ft_strlen(map->map[i + 1]) - 2;
+		if (i + 1 == map->map_len - 1 && ft_strlen(map->map[i]) > ft_strlen(map->map[i + 1]) && ft_strlen(map->map[i + 1]) < ft_strlen(map->map[i - 1]))
+			y = ft_strlen(map->map[i + 1]) - 1;
+		printf("y = %d\n", y);
+		while (y < j)
+		{
+			if (map->map[i][y] && map->map[i][y] != '1')
+				clear_map(map, "right 1Map is not surrounded by walls\n");
+			y++;
+		}
+		if (map->map[i][j] && map->map[i][j] != '1')
+			clear_map(map, "right 2Map is not surrounded by walls\n");
+		i++;
 	}
 }
 

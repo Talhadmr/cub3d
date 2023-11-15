@@ -55,11 +55,11 @@ void	clear_textures(t_map *map, char *error)
 
 void	ft_check_map(t_map *map)
 {
-	// check_up_wall(map);
-	// check_down_wall(map);
-	// check_left_wall(map);
-	// check_right_wall(map);
-	check_all_walls(map);
+	check_up_wall(map);
+	check_down_wall(map);
+	check_left_wall(map);
+	check_right_wall(map);
+	///check_all_walls(map);
 	check_char(map);
 	check_spaces(map);
 	if (map->player != 1)
@@ -79,7 +79,7 @@ void check_all_walls(t_map *map)
 	j = 0;
 
 	printf("start left\n");
-	while (map->map[i])
+	while (i < map->map_len && map->map[i])
 	{
 		while (i < map->map_len && map->map[i][j] && map->map[i][j] == '1')
 			i++;
@@ -111,29 +111,36 @@ void check_all_walls(t_map *map)
 			j++;
 			i = 0;
 		}
-		else if (map->map[i][j] && map->map[i][j] != '\n')
+		else if (map->map[i][j] && map->map[i][j] == '\n')
+			break ;
+		else
 			clear_map(map, "up 2 Map is not surrounded by walls\n");
 	}
 	
 	printf("start right\n");
-	y = j;
+	y = ft_strlen(map->map[0]) - 2;
 	while (i < map->map_len && map->map[i])
 	{
 		j = ft_strlen(map->map[i]) - 1;
 		if (map->map[i][j] == '\n')
 			j--;
-		if (ft_strlen(map->map[i]) > y)
+		printf("j = %d ", j);
+		while (map->map[i][j] && map->map[i][j] == ' ')
+			j--;
+		if (i - 1 >= 0 && ft_strlen(map->map[i]) > ft_strlen(map->map[i - 1]))
+			y = ft_strlen(map->map[i - 1]) - 2;
+		if (i + 1 < map->map_len - 1 && ft_strlen(map->map[i]) > ft_strlen(map->map[i + 1]) && ft_strlen(map->map[i + 1]) < ft_strlen(map->map[i - 1]))
+			y = ft_strlen(map->map[i + 1]) - 2;
+		if (i + 1 == map->map_len - 1 && ft_strlen(map->map[i]) > ft_strlen(map->map[i + 1]) && ft_strlen(map->map[i + 1]) < ft_strlen(map->map[i - 1]))
+			y = ft_strlen(map->map[i + 1]) - 1;
+		printf("y = %d\n", y);
+		while (y < j)
 		{
-			y -= 2;
-			while (y < j)
-			{
-				if (map->map[i][y] && (map->map[i][y] != '1' || map->map[i][y] != ' '))
-					clear_map(map, "right 1Map is not surrounded by walls\n");
-				y++;
-			}
-			y = ft_strlen(map->map[i]);
+			if (map->map[i][y] && map->map[i][y] != '1')
+				clear_map(map, "right 1Map is not surrounded by walls\n");
+			y++;
 		}
-		if (map->map[i][j] && (map->map[i][y] != '1' || map->map[i][y] != ' '))
+		if (map->map[i][j] && map->map[i][j] != '1')
 			clear_map(map, "right 2Map is not surrounded by walls\n");
 		i++;
 	}
@@ -154,6 +161,8 @@ void check_all_walls(t_map *map)
 			j--;
 			i = map->map_len - 1;
 		}
+		else if (j < 0)
+			break ;
 		else
 			clear_map(map, "down 2 Map is not surrounded by walls\n");
 	}

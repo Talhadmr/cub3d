@@ -59,7 +59,7 @@ void	ft_set_textures(t_map *map, int fd)
 
 void	check_after_map(t_map *map, int fd)
 {
-	if (map->line != NULL && empty_line(map))
+	while (map->line != NULL && empty_line(map))
 	{
 		free(map->line);
 		map->line = get_next_line(fd);
