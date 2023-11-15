@@ -172,7 +172,7 @@ int				the_sign(char c);
 void			check_left_wall(t_map *map);
 void			check_right_wall(t_map *map);
 void			check_char(t_map *map);
-int				right_wall(t_map *map, int i, int len);
+int				right_wall(t_map *map, int i, int y);
 void			check_spaces(t_map *map);
 
 //wall.c
@@ -193,7 +193,6 @@ void			ft_init_texture(t_map *map);
 void			clear_textures(t_map *map, char *error);
 void			clear_map(t_map *map, char *error);
 void			ft_check_map(t_map *map);
-void check_all_walls(t_map *map);
 
 //libft_utils
 void			*ft_memset(void *b, int c, size_t len);
