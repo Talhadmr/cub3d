@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ykissiko <ykissiko@student.42istanbul.com  +#+  +:+       +#+        */
+/*   By: tdemir <tdemir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 15:40:59 by ykissiko          #+#    #+#             */
-/*   Updated: 2023/10/31 15:41:01 by ykissiko         ###   ########.fr       */
+/*   Updated: 2023/11/30 04:59:03 by tdemir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,25 +88,59 @@ void	set_map_val(char *str, t_map *map)
 
 void	set_map_val2(char *str, char *s, t_map *map)
 {
+	int fd;
+	
 	if (str_cmp(str, "NO"))
 	{
-		free(map->no);
-		map->no = ft_strdup(s);
+		fd = open(s, O_RDONLY);
+		
+		if (fd == -1)
+			clear_textures(map, "NO texture not found\n");
+		else if (fd != -1)
+		{
+			free(map->no);
+			map->no = ft_strdup(s);
+			close(fd);
+		}
 	}
 	else if (str_cmp(str, "SO"))
 	{
-		free(map->so);
-		map->so = ft_strdup(s);
+		fd = open(s, O_RDONLY);
+		
+		if (fd == -1)
+			clear_textures(map, "SO texture not found\n");
+		else if (fd != -1)
+		{
+			free(map->so);
+			map->so = ft_strdup(s);
+			close(fd);
+		}
+
 	}
 	else if (str_cmp(str, "WE"))
 	{
-		free(map->we);
-		map->we = ft_strdup(s);
+		fd = open(s, O_RDONLY);
+		if (fd == -1)
+			clear_textures(map, "WE texture not found\n");
+		else if (fd != -1)
+		{
+			free(map->we);
+			map->we = ft_strdup(s);
+			close(fd);
+		}
 	}
 	else if (str_cmp(str, "EA"))
 	{
-		free(map->ea);
-		map->ea = ft_strdup(s);
+
+		fd = open(s, O_RDONLY);
+		if (fd == -1)
+			clear_textures(map, "EA texture not found\n");
+		else if (fd != -1)
+		{
+			free(map->ea);
+			map->ea = ft_strdup(s);
+			close(fd);
+		}
 	}
 	else if (str_cmp(str, "F"))
 		set_floor_ceiling(s, map, 'F');

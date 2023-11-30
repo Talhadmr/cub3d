@@ -6,7 +6,7 @@
 /*   By: tdemir <tdemir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/14 07:13:32 by tdemir            #+#    #+#             */
-/*   Updated: 2023/10/14 07:18:34 by tdemir           ###   ########.fr       */
+/*   Updated: 2023/11/15 15:04:37 by tdemir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,9 @@ int	press(int key, void *cub3dd)
 	if (key == 2)
 		cub3d->rc.key_d = 1;
 	else if (key == 53)
+	{
 		exit(0);
+	}
 	return (0);
 }
 
