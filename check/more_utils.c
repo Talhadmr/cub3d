@@ -50,6 +50,7 @@ void	clear_textures(t_map *map, char *error)
 		free(map->no);
 	if (map->line && map->line[0])
 		free(map->line);
+	system("leaks cub3D");
 	exit(0);
 }
 

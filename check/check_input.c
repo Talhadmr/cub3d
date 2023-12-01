@@ -85,3 +85,11 @@ int	set_color(int i, char *s, short *c, t_map *map)
 		clear_textures(map, "Wrong colors\n");
 	return (i);
 }
+
+void	ft_check_setting(t_map *map)
+{
+	if (map->ceiling_color == -1 || map->floor_color == -1)
+		clear_textures(map, "Colors not set\n");
+	if (!map->ea[1] || !map->no[1] || !map->so[1] || !map->we[1])
+		clear_textures(map, "Side textures are not set\n");
+}

@@ -12,14 +12,6 @@
 
 #include "../cub3d.h"
 
-void	ft_check_setting(t_map *map)
-{
-	if (map->ceiling_color == -1 || map->floor_color == -1)
-		clear_textures(map, "Colors not set\n");
-	if (!map->ea[1] || !map->no[1] || !map->so[1] || !map->we[1])
-		clear_textures(map, "Side textures are not set\n");
-}
-
 int	ft_fill_map(t_map *map, char *argv)
 {
 	int	fd;
@@ -88,63 +80,47 @@ void	set_map_val(char *str, t_map *map)
 
 void	set_map_val2(char *str, char *s, t_map *map)
 {
-	int fd;
-	
-	if (str_cmp(str, "NO"))
-	{
-		fd = open(s, O_RDONLY);
-		
-		if (fd == -1)
-			clear_textures(map, "NO texture not found\n");
-		else if (fd != -1)
-		{
-			free(map->no);
-			map->no = ft_strdup(s);
-			close(fd);
-		}
-	}
-	else if (str_cmp(str, "SO"))
-	{
-		fd = open(s, O_RDONLY);
-		
-		if (fd == -1)
-			clear_textures(map, "SO texture not found\n");
-		else if (fd != -1)
-		{
-			free(map->so);
-			map->so = ft_strdup(s);
-			close(fd);
-		}
+	int	fd;
 
-	}
-	else if (str_cmp(str, "WE"))
+	if (str_cmp(str, "NO") || str_cmp(str, "SO")
+		|| str_cmp(str, "EA") || str_cmp(str, "WE"))
 	{
 		fd = open(s, O_RDONLY);
 		if (fd == -1)
-			clear_textures(map, "WE texture not found\n");
-		else if (fd != -1)
 		{
-			free(map->we);
-			map->we = ft_strdup(s);
 			close(fd);
+			clear_textures(map, "Cannot open textures file\n");
 		}
-	}
-	else if (str_cmp(str, "EA"))
-	{
-
-		fd = open(s, O_RDONLY);
-		if (fd == -1)
-			clear_textures(map, "EA texture not found\n");
-		else if (fd != -1)
-		{
-			free(map->ea);
-			map->ea = ft_strdup(s);
-			close(fd);
-		}
+		close(fd);
 	}
 	else if (str_cmp(str, "F"))
 		set_floor_ceiling(s, map, 'F');
 	else if (str_cmp(str, "C"))
 		set_floor_ceiling(s, map, 'C');
+	set_map_val3(str, s, map);
+}
+
+void	set_map_val3(char *str, char *s, t_map *map)
+{
+	if (str_cmp(str, "NO"))
+	{
+		free(map->no);
+		map->no = ft_strdup(s);
+	}
+	else if (str_cmp(str, "SO"))
+	{
+		free(map->so);
+		map->so = ft_strdup(s);
+	}
+	else if (str_cmp(str, "WE"))
+	{
+		free(map->we);
+		map->we = ft_strdup(s);
+	}
+	else if (str_cmp(str, "EA"))
+	{
+		free(map->ea);
+		map->ea = ft_strdup(s);
+	}
 	free(s);
 }

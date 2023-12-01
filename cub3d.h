@@ -154,10 +154,11 @@ int				ft_check_input(int argc, char **argv);
 int				ft_check_ext(char *file, int len, char *ext);
 void			set_floor_ceiling(char *s, t_map *map, char c);
 int				set_color(int i, char *s, short *c, t_map *map);
+void			ft_check_setting(t_map *map);
 
 //check map
 int				ft_fill_map(t_map *map, char *argv);
-
+void			set_map_val3(char *str, char *s, t_map *map);
 void			set_map_val(char *str, t_map *map);
 void			set_map_val2(char *str, char *s, t_map *map);
 int				map_start(char *line);
