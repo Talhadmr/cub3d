@@ -98,7 +98,7 @@ void	set_map_val2(char *str, char *s, t_map *map)
 		set_floor_ceiling(s, map, 'F');
 	else if (str_cmp(str, "C"))
 		set_floor_ceiling(s, map, 'C');
-	else if (str_cmp(str, "NO"))
+	if (str_cmp(str, "NO"))
 	{
 		if (map->no[0])
 			clear_textures(map, "Duplicated NO texture\n");
