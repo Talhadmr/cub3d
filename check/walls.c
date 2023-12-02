@@ -47,6 +47,9 @@ void	check_right_wall(t_map *map)
 	int	j;
 	int	y;
 
+
+	printf("hello\n");
+
 	i = 0;
 	y = ft_strlen(map->map[0]) - 2;
 	while (i < map->map_len && map->map[i])
@@ -54,6 +57,10 @@ void	check_right_wall(t_map *map)
 		j = ft_strlen(map->map[i]) - 1;
 		if (map->map[i][j] == '\n')
 			j--;
+
+		printf("%d\n", j);
+		printf("i = %d; c = %c\n", i, map->map[i][j]);
+		
 		while (map->map[i][j] && map->map[i][j] == ' ')
 			j--;
 		y = right_wall(map, i, y);
@@ -73,7 +80,7 @@ int	right_wall(t_map *map, int i, int y)
 {
 	if (i - 1 >= 0 && ft_strlen(map->map[i]) > ft_strlen(map->map[i - 1]))
 		y = ft_strlen(map->map[i - 1]) - 1;
-	if (i + 1 < map->map_len - 1
+	if (i + 1 < map->map_len - 1 && i - 1 >= 0
 		&& ft_strlen(map->map[i]) > ft_strlen(map->map[i + 1])
 		&& ft_strlen(map->map[i + 1]) < ft_strlen(map->map[i - 1]))
 		y = ft_strlen(map->map[i + 1]) - 1;

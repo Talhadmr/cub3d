@@ -50,6 +50,10 @@ void	set_floor_ceiling(char *s, t_map *map, char c)
 	short	green;
 	short	blue;
 
+	if (c == 'F' && map->floor_color != -1)
+		clear_textures(map, "Duplicated floor colors\n");
+	else if (c == 'C' && map->ceiling_color != -1)
+		clear_textures(map, "Duplicated ceiling colors\n");
 	i = -1;
 	i = set_color(i, s, &red, map) - 1;
 	i = set_color(i, s, &green, map) - 1;
@@ -90,6 +94,6 @@ void	ft_check_setting(t_map *map)
 {
 	if (map->ceiling_color == -1 || map->floor_color == -1)
 		clear_textures(map, "Colors not set\n");
-	if (!map->ea[1] || !map->no[1] || !map->so[1] || !map->we[1])
+	if (!map->ea[0] || !map->no[0] || !map->so[0] || !map->we[0])
 		clear_textures(map, "Side textures are not set\n");
 }

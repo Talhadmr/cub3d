@@ -104,21 +104,29 @@ void	set_map_val3(char *str, char *s, t_map *map)
 {
 	if (str_cmp(str, "NO"))
 	{
+		if (map->no[0])
+			clear_textures(map, "Duplicated NO texture\n");
 		free(map->no);
 		map->no = ft_strdup(s);
 	}
 	else if (str_cmp(str, "SO"))
 	{
+		if (map->so[0])
+			clear_textures(map, "Duplicated SO texture\n");
 		free(map->so);
 		map->so = ft_strdup(s);
 	}
 	else if (str_cmp(str, "WE"))
 	{
+		if (map->we[0])
+			clear_textures(map, "Duplicated WE texture\n");
 		free(map->we);
 		map->we = ft_strdup(s);
 	}
 	else if (str_cmp(str, "EA"))
 	{
+		if (map->ea[0])
+			clear_textures(map, "Duplicated EA texture\n");
 		free(map->ea);
 		map->ea = ft_strdup(s);
 	}

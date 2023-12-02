@@ -25,7 +25,7 @@ void	check_up_wall(t_map *map)
 		else if (map->map[0][i] == ' ')
 		{
 			j = 0;
-			while (map->map[j][i])
+			while (/*map->map[j][i]*/ j < map->map_len)
 			{
 				if (map->map[j][i] == '1')
 				{
