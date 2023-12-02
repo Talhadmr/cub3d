@@ -54,10 +54,18 @@ void	set_floor_ceiling(char *s, t_map *map, char c)
 		clear_textures(map, "Duplicated floor colors\n");
 	else if (c == 'C' && map->ceiling_color != -1)
 		clear_textures(map, "Duplicated ceiling colors\n");
-	i = -1;
-	i = set_color(i, s, &red, map) - 1;
-	i = set_color(i, s, &green, map) - 1;
-	i = set_color(i, s, &blue, map) - 1;
+	i = 0;
+	i = set_color(i, s, &red, map);
+	if (s[i] != ',')
+		clear_textures(map, "Wrong format for colors, add only 1 comma\n");
+	i++;
+	i = set_color(i, s, &green, map);
+	if (s[i] != ',')
+		clear_textures(map, "Wrong format for colors, add only 1 comma\n");
+	i++;
+	i = set_color(i, s, &blue, map);
+	if (i < ft_strlen(s))
+		clear_textures(map, "Wrong format for colors\n");
 	if (c == 'F')
 		map->floor_color = (red << 16) + (green << 8) + blue;
 	else if (c == 'C')
@@ -69,7 +77,9 @@ int	set_color(int i, char *s, short *c, t_map *map)
 	char	*color;
 
 	color = ft_calloc(1, sizeof(char));
-	while (s[++i])
+	while (s[i] && (s[i] == ' ' || (s[i] >= 9 && s[i] <= 13)))
+		i++;
+	while (s[i])
 	{
 		if (s[i] >= '0' && s[i] <= '9')
 			color = str_subjoin(color, s[i]);
@@ -80,8 +90,9 @@ int	set_color(int i, char *s, short *c, t_map *map)
 			free(color);
 			clear_textures(map, "Wrong colors\n");
 		}
+		i++;
 	}
-	while (s[i] && (s[i] == ' ' || (s[i] >= 9 && s[i] <= 13) || s[i] == ','))
+	while (s[i] && (s[i] == ' ' || (s[i] >= 9 && s[i] <= 13)))
 		i++;
 	*c = ft_atoi(color);
 	free(color);

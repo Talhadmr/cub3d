@@ -53,6 +53,12 @@ typedef struct s_map
 	char		*line;
 	int			player;
 
+	char **c_map;
+	int left;
+	int right;
+	int up;
+	int down;
+
 }				t_map;
 
 typedef struct s_assets
@@ -175,6 +181,10 @@ void			check_right_wall(t_map *map);
 void			check_char(t_map *map);
 int				right_wall(t_map *map, int i, int y);
 void			check_spaces(t_map *map);
+
+void space_loop(t_map *map, int i, int j);
+int sign(char c);
+void check_path(t_map *map);
 
 //wall.c
 int				wall_check(t_map *map, char c);
