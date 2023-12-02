@@ -72,9 +72,18 @@ char	*ft_strdup(char *s1)
 	return (str);
 }
 
-int	the_sign(char c)
+int	sign(char c)
 {
-	if (c == ' ' || c == '1' || c == '\n' || c == 0)
+	if (c == '1' || c == '\n' || c == '\0' || c == '.')
 		return (1);
 	return (0);
+}
+
+void	check_path(t_map *map)
+{
+	int	i;
+
+	i = map->left + map->right + map->up + map->down;
+	if (i < -1)
+		clear_map(map, "Map has unconnected submap\n");
 }

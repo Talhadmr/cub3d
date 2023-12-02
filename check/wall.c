@@ -25,7 +25,7 @@ void	check_up_wall(t_map *map)
 		else if (map->map[0][i] == ' ')
 		{
 			j = 0;
-			while (/*map->map[j][i]*/ j < map->map_len)
+			while (j < map->map_len)
 			{
 				if (map->map[j][i] == '1')
 				{
@@ -83,4 +83,17 @@ int	wall_check(t_map *map, char c)
 	else
 		clear_map(map, "Map is not surrounded by walls\n");
 	return (0);
+}
+
+void	check_ends(t_map *map, int i, int j)
+{
+	if (i == 0)
+		map->up = -1;
+	if (i == map->map_len - 1)
+		map->down = -1;
+	if (j == 0)
+		map->left = -1;
+	if ((i < map->map_len - 1 && j == ft_strlen(map->c_map[i]) - 2)
+		|| (i == map->map_len - 1 && j == ft_strlen(map->c_map[i]) - 1))
+		map->right = -1;
 }

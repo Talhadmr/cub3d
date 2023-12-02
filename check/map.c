@@ -23,6 +23,7 @@ void	ft_set_map(t_map *map, int fd)
 		if (map_start(map->line) == 1)
 		{
 			map->map[i] = ft_strdup(map->line);
+			map->c_map[i] = ft_strdup(map->line);
 			i++;
 		}
 		free(map->line);

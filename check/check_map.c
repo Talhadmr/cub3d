@@ -23,7 +23,8 @@ int	ft_fill_map(t_map *map, char *argv)
 	if (map->map_len > 0)
 	{
 		map->map = malloc(sizeof(char *) * map->map_len + 1);
-		if (!map->map)
+		map->c_map = malloc(sizeof(char *) * map->map_len);
+		if (!map->map || !map->c_map)
 			return (0);
 	}
 	else
@@ -97,19 +98,19 @@ void	set_map_val2(char *str, char *s, t_map *map)
 		set_floor_ceiling(s, map, 'F');
 	else if (str_cmp(str, "C"))
 		set_floor_ceiling(s, map, 'C');
-	set_map_val3(str, s, map);
-}
-
-void	set_map_val3(char *str, char *s, t_map *map)
-{
-	if (str_cmp(str, "NO"))
+	else if (str_cmp(str, "NO"))
 	{
 		if (map->no[0])
 			clear_textures(map, "Duplicated NO texture\n");
 		free(map->no);
 		map->no = ft_strdup(s);
 	}
-	else if (str_cmp(str, "SO"))
+	set_map_val3(str, s, map);
+}
+
+void	set_map_val3(char *str, char *s, t_map *map)
+{
+	if (str_cmp(str, "SO"))
 	{
 		if (map->so[0])
 			clear_textures(map, "Duplicated SO texture\n");

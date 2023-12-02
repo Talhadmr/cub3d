@@ -30,9 +30,13 @@ void	clear_map(t_map *map, char *error)
 	int	i;
 
 	i = -1;
-	while (map->map[++i])
+	while (++i < map->map_len)
 		free(map->map[i]);
 	free(map->map);
+	i = -1;
+	while (++i < map->map_len)
+		free(map->c_map[i]);
+	free(map->c_map);
 	clear_textures(map, error);
 }
 
@@ -59,7 +63,6 @@ void	ft_check_map(t_map *map)
 	check_down_wall(map);
 	check_left_wall(map);
 	check_right_wall(map);
-	check_char(map);
 	check_spaces(map);
 	if (map->player != 1)
 		clear_map(map, "Wrong number of players\n");
