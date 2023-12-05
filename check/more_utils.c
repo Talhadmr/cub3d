@@ -6,7 +6,7 @@
 /*   By: ykissiko <ykissiko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 15:46:19 by ykissiko          #+#    #+#             */
-/*   Updated: 2023/12/05 19:05:27 by ykissiko         ###   ########.fr       */
+/*   Updated: 2023/12/05 21:09:42 by ykissiko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ void	ft_init_texture(t_map *map)
 	map->so = ft_calloc(1, sizeof(char));
 	map->no = ft_calloc(1, sizeof(char));
 	map->player = 0;
-	map->connected = 0;
 }
 
 void	clear_map(t_map *map, char *error)
@@ -34,6 +33,9 @@ void	clear_map(t_map *map, char *error)
 	while (++i < map->map_len)
 		free(map->map[i]);
 	free(map->map);
+	while (++i < map->map_len)
+		free(map->c_map[i]);
+	free(map->c_map);
 	clear_textures(map, error);
 }
 
@@ -61,6 +63,7 @@ void	ft_check_map(t_map *map)
 	check_left_wall(map);
 	check_right_wall(map);
 	check_spaces(map);
+	check_path(map);
 	if (map->player != 1)
 		clear_map(map, "Wrong number of players\n");
 }

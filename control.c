@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   control.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tdemir <tdemir@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ykissiko <ykissiko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/14 07:13:32 by tdemir            #+#    #+#             */
-/*   Updated: 2023/12/05 20:00:11 by tdemir           ###   ########.fr       */
+/*   Updated: 2023/12/05 21:09:30 by ykissiko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	press(int k, void *cub3dd)
 		cub3d->rc.key_s = 1;
 	if (k == 123)
 		cub3d->rc.key_left = 1;
-	if (k== 124)
+	if (k == 124)
 		cub3d->rc.key_right = 1;
 	if (k == 0)
 		cub3d->rc.key_a = 1;

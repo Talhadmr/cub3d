@@ -6,7 +6,7 @@
 /*   By: ykissiko <ykissiko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 15:40:59 by ykissiko          #+#    #+#             */
-/*   Updated: 2023/12/05 19:05:11 by ykissiko         ###   ########.fr       */
+/*   Updated: 2023/12/05 19:32:51 by ykissiko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ int	ft_fill_map(t_map *map, char *argv)
 	if (map->map_len > 0)
 	{
 		map->map = malloc(sizeof(char *) * map->map_len + 1);
-		if (!map->map)
+		map->c_map = malloc(sizeof(char *) * map->map_len + 1);
+		if (!map->map || !map->c_map)
 			return (0);
 	}
 	else

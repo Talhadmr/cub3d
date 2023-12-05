@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   walls.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tdemir <tdemir@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ykissiko <ykissiko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 15:57:54 by ykissiko          #+#    #+#             */
-/*   Updated: 2023/12/05 19:38:08 by tdemir           ###   ########.fr       */
+/*   Updated: 2023/12/05 20:48:49 by ykissiko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,63 +82,4 @@ int	right_wall(t_map *map, int i, int y)
 		&& ft_strlen(map->map[i + 1]) < ft_strlen(map->map[i - 1]))
 		y = ft_strlen(map->map[i + 1]);
 	return (y);
-}
-
-int	check_inside(t_map *map, int i, int j)
-{
-	int	len;
-	int	k;
-
-
-	len = ft_strlen(map->map[i]);
-
-	k = j - 1;
-	while (j < len && (map->map[i][j] == '1' || map->map[i][j] == '0'
-			|| player(map->map[i][j])))
-	{
-		if (player(map->map[i][j]))
-			map->player++;
-		j++;
-	}
-	while (j < len && map->map[i][j] == ' ')
-		j++;
-	while (k >= 0 && map->map[i][k] == ' ')
-		k--;
-	
-	if (k == -1 && map->connected == -1)
-		clear_map(map, "Map has unconnected submap\n");
-	if (k == -1 && (j == len - 1 || map->map[i][j] == '\n'
-		|| map->map[i][j] == '\0'))
-		map->connected = 0;
-	else
-		map->connected = -1;
-	return (j);
-}
-
-void	check_spaces(t_map *map)
-{
-	int	i;
-	int	j;
-
-	i = -1;
-	while (map->map[++i] && i < map->map_len - 1)
-	{
-		j = 0;
-		while (j < ft_strlen(map->map[i]))
-		{
-			while (ft_strlen(map->map[i]) > j & map->map[i][j] == ' ')
-				j++;
-			if (map->map[i][j] == '1' || map->map[i][j] == '0')
-				j = check_inside(map, i, j);
-			else if (player(map->map[i][j]) == 1)
-			{
-				map->player++;
-				j++;
-			}
-			else if (map->map[i][j] == '\n')
-				break ;
-			else
-				clear_map(map, "Map has some undefined chars\n");
-		}
-	}
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tdemir <tdemir@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ykissiko <ykissiko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/14 07:13:42 by tdemir            #+#    #+#             */
-/*   Updated: 2023/12/05 20:03:14 by tdemir           ###   ########.fr       */
+/*   Updated: 2023/12/05 21:09:17 by ykissiko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,8 @@ typedef struct s_map
 	char		*line;
 	int			player;
 
-	int			connected;
+	char		**c_map;
+
 }				t_map;
 
 typedef struct s_assets
@@ -157,6 +158,13 @@ void			set_floor_ceiling(char *s, t_map *map, char c);
 int				set_color(int i, char *s, short *c, t_map *map);
 void			ft_check_setting(t_map *map);
 
+//check path
+void			space_sur(t_map *map, int i, int j);
+void			check_spaces(t_map *map);
+void			path_loop(t_map *map, int i, int j);
+void			check_path(t_map *map);
+void			check_path2(t_map *map);
+
 //check map
 int				ft_fill_map(t_map *map, char *argv);
 void			set_map_val3(char *str, char *s, t_map *map);
@@ -174,8 +182,6 @@ int				player(char c);
 void			check_left_wall(t_map *map);
 void			check_right_wall(t_map *map);
 int				right_wall(t_map *map, int i, int y);
-void			check_spaces(t_map *map);
-int				check_inside(t_map *map, int i, int j);
 
 //wall.c
 int				wall_check(t_map *map, char c);
