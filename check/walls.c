@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   walls.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ykissiko <ykissiko@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tdemir <tdemir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 15:57:54 by ykissiko          #+#    #+#             */
-/*   Updated: 2023/12/05 19:10:28 by ykissiko         ###   ########.fr       */
+/*   Updated: 2023/12/05 19:38:08 by tdemir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,9 @@ int	check_inside(t_map *map, int i, int j)
 	int	len;
 	int	k;
 
+
 	len = ft_strlen(map->map[i]);
+
 	k = j - 1;
 	while (j < len && (map->map[i][j] == '1' || map->map[i][j] == '0'
 			|| player(map->map[i][j])))
@@ -102,6 +104,7 @@ int	check_inside(t_map *map, int i, int j)
 		j++;
 	while (k >= 0 && map->map[i][k] == ' ')
 		k--;
+	
 	if (k == -1 && map->connected == -1)
 		clear_map(map, "Map has unconnected submap\n");
 	if (k == -1 && (j == len - 1 || map->map[i][j] == '\n'

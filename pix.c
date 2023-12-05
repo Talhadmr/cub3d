@@ -6,13 +6,13 @@
 /*   By: tdemir <tdemir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/14 07:13:52 by tdemir            #+#    #+#             */
-/*   Updated: 2023/10/14 07:16:58 by tdemir           ###   ########.fr       */
+/*   Updated: 2023/12/05 20:01:49 by tdemir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	floor_and_ceiling(t_cub3d *cub3d)
+void	floor_ceiling(t_cub3d *cub3d)
 {
 	int	x;
 	int	y;
@@ -33,7 +33,7 @@ void	floor_and_ceiling(t_cub3d *cub3d)
 	}
 }
 
-void	clear_img(t_cub3d *cub3d)
+void	clear_(t_cub3d *cub3d)
 {
 	mlx_destroy_image(cub3d->mlx.mlx_init, cub3d->mlx.mlx_object);
 	cub3d->mlx.mlx_object = mlx_new_image(cub3d->mlx.mlx_init,
@@ -44,11 +44,11 @@ void	clear_img(t_cub3d *cub3d)
 			&cub3d->mlx.endian);
 }
 
-int	draw(t_cub3d *cub3d)
+int	rend(t_cub3d *cub3d)
 {
-	clear_img(cub3d);
-	floor_and_ceiling(cub3d);
+	clear_(cub3d);
+	floor_ceiling(cub3d);
 	ray_casting(cub3d);
-	move(cub3d);
+	movement(cub3d);
 	return (0);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ykissiko <ykissiko@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tdemir <tdemir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/14 07:13:42 by tdemir            #+#    #+#             */
-/*   Updated: 2023/12/05 19:08:21 by ykissiko         ###   ########.fr       */
+/*   Updated: 2023/12/05 20:03:14 by tdemir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,19 +130,19 @@ typedef struct s_cub3d
 	t_rc		rc;
 }				t_cub3d;
 
-void			game(t_cub3d *cub3d);
-void			img(t_cub3d *cub3d);
+void			render(t_cub3d *cub3d);
+void			imgs(t_cub3d *cub3d);
 void			user_location(t_cub3d *cub3d);
 void			camera(t_cub3d *cub3d);
-int				draw(t_cub3d *cub3d);
+int				rend(t_cub3d *cub3d);
 void			set_variables(t_cub3d *cub3d);
 void			ray_casting(t_cub3d *cub3d);
 void			ray_casting_send(t_cub3d *cub3d, int x);
 void			texture(t_cub3d *cub3d, int x);
 int				close_window(int key, void *cub3d);
 int				press(int key, void *cub3dd);
-int				release(int key, t_cub3d *cub3d);
-void			move(t_cub3d *cub3d);
+int				rele(int key, t_cub3d *cub3d);
+void			movement(t_cub3d *cub3d);
 int				is_character(char c);
 void			key_d1(t_cub3d *cub3d);
 void			key_a1(t_cub3d *cub3d);

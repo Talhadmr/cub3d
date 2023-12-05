@@ -6,7 +6,7 @@
 /*   By: tdemir <tdemir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/14 07:13:49 by tdemir            #+#    #+#             */
-/*   Updated: 2023/10/14 07:18:08 by tdemir           ###   ########.fr       */
+/*   Updated: 2023/12/05 19:57:32 by tdemir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,5 +21,5 @@ int	main(int ac, char **av)
 	if (ft_check_input(ac, av) != 1)
 		return (0);
 	ft_fill_map(&cub3d->map, av[1]);
-	game(cub3d);
+	render(cub3d);
 }

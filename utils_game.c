@@ -6,7 +6,7 @@
 /*   By: tdemir <tdemir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/14 07:13:58 by tdemir            #+#    #+#             */
-/*   Updated: 2023/10/14 07:16:44 by tdemir           ###   ########.fr       */
+/*   Updated: 2023/12/05 19:56:48 by tdemir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	control(t_cub3d *cub3d)
 
 void	set_variables(t_cub3d *cub3d)
 {
-	img(cub3d);
+	imgs(cub3d);
 	user_location(cub3d);
 	camera(cub3d);
 	control(cub3d);
@@ -34,14 +34,14 @@ void	camera1(t_cub3d *cub3d)
 	{
 		cub3d->rc.dirx = 0;
 		cub3d->rc.diry = -1;
-		cub3d->rc.planex = -0.66;
+		cub3d->rc.planex = -0.60;
 		cub3d->rc.planey = 0;
 	}
 	if (cub3d->map.map[(int)cub3d->rc.posx][(int)cub3d->rc.posy] == 'E')
 	{
 		cub3d->rc.dirx = 0;
 		cub3d->rc.diry = 1;
-		cub3d->rc.planex = 0.66;
+		cub3d->rc.planex = 0.60;
 		cub3d->rc.planey = 0;
 	}
 }
@@ -53,14 +53,14 @@ void	camera(t_cub3d *cub3d)
 		cub3d->rc.dirx = -1;
 		cub3d->rc.diry = 0;
 		cub3d->rc.planex = 0;
-		cub3d->rc.planey = -0.66;
+		cub3d->rc.planey = -0.60;
 	}
 	if (cub3d->map.map[(int)cub3d->rc.posx][(int)cub3d->rc.posy] == 'S')
 	{
 		cub3d->rc.dirx = 1;
 		cub3d->rc.diry = 0;
 		cub3d->rc.planex = 0;
-		cub3d->rc.planey = 0.66;
+		cub3d->rc.planey = 0.60;
 	}
 	camera1(cub3d);
 }
