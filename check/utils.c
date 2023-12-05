@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ykissiko <ykissiko@student.42istanbul.com  +#+  +:+       +#+        */
+/*   By: ykissiko <ykissiko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 15:57:30 by ykissiko          #+#    #+#             */
-/*   Updated: 2023/10/31 15:57:32 by ykissiko         ###   ########.fr       */
+/*   Updated: 2023/12/05 19:09:10 by ykissiko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,11 +79,9 @@ int	sign(char c)
 	return (0);
 }
 
-void	check_path(t_map *map)
+int	player(char c)
 {
-	int	i;
-
-	i = map->left + map->right + map->up + map->down;
-	if (i < -1)
-		clear_map(map, "Map has unconnected submap\n");
+	if (c == 'N' || c == 'S' || c == 'E' || c == 'W')
+		return (1);
+	return (0);
 }

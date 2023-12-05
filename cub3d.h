@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tdemir <tdemir@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ykissiko <ykissiko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/14 07:13:42 by tdemir            #+#    #+#             */
-/*   Updated: 2023/10/14 07:18:27 by tdemir           ###   ########.fr       */
+/*   Updated: 2023/12/05 19:08:21 by ykissiko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,12 +53,7 @@ typedef struct s_map
 	char		*line;
 	int			player;
 
-	char		**c_map;
-	int			left;
-	int			right;
-	int			up;
-	int			down;
-
+	int			connected;
 }				t_map;
 
 typedef struct s_assets
@@ -174,21 +169,19 @@ int				ft_atoi(const char *str);
 int				str_cmp(char *s1, char *s2);
 char			*ft_strdup(char *s1);
 int				sign(char c);
-void			check_path(t_map *map);
-
+int				player(char c);
 //walls
 void			check_left_wall(t_map *map);
 void			check_right_wall(t_map *map);
 int				right_wall(t_map *map, int i, int y);
 void			check_spaces(t_map *map);
-void			space_loop(t_map *map, int i, int j);
+int				check_inside(t_map *map, int i, int j);
 
 //wall.c
 int				wall_check(t_map *map, char c);
 int				down_wall(t_map *map, int i);
 void			check_down_wall(t_map *map);
 void			check_up_wall(t_map *map);
-void			check_ends(t_map *map, int i, int j);
 
 //map.c
 void			ft_set_map(t_map *map, int fd);

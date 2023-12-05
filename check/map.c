@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ykissiko <ykissiko@student.42istanbul.com  +#+  +:+       +#+        */
+/*   By: ykissiko <ykissiko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 15:55:08 by ykissiko          #+#    #+#             */
-/*   Updated: 2023/10/31 15:55:09 by ykissiko         ###   ########.fr       */
+/*   Updated: 2023/12/05 19:05:15 by ykissiko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ void	ft_set_map(t_map *map, int fd)
 		if (map_start(map->line) == 1)
 		{
 			map->map[i] = ft_strdup(map->line);
-			map->c_map[i] = ft_strdup(map->line);
 			i++;
 		}
 		free(map->line);

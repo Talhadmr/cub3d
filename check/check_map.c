@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tdemir <tdemir@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ykissiko <ykissiko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 15:40:59 by ykissiko          #+#    #+#             */
-/*   Updated: 2023/11/30 04:59:03 by tdemir           ###   ########.fr       */
+/*   Updated: 2023/12/05 19:05:11 by ykissiko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,7 @@ int	ft_fill_map(t_map *map, char *argv)
 	if (map->map_len > 0)
 	{
 		map->map = malloc(sizeof(char *) * map->map_len + 1);
-		map->c_map = malloc(sizeof(char *) * map->map_len);
-		if (!map->map || !map->c_map)
+		if (!map->map)
 			return (0);
 	}
 	else

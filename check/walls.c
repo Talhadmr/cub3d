@@ -6,7 +6,7 @@
 /*   By: ykissiko <ykissiko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 15:57:54 by ykissiko          #+#    #+#             */
-/*   Updated: 2023/12/05 17:52:31 by ykissiko         ###   ########.fr       */
+/*   Updated: 2023/12/05 19:10:28 by ykissiko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,34 @@ int	right_wall(t_map *map, int i, int y)
 	return (y);
 }
 
+int	check_inside(t_map *map, int i, int j)
+{
+	int	len;
+	int	k;
+
+	len = ft_strlen(map->map[i]);
+	k = j - 1;
+	while (j < len && (map->map[i][j] == '1' || map->map[i][j] == '0'
+			|| player(map->map[i][j])))
+	{
+		if (player(map->map[i][j]))
+			map->player++;
+		j++;
+	}
+	while (j < len && map->map[i][j] == ' ')
+		j++;
+	while (k >= 0 && map->map[i][k] == ' ')
+		k--;
+	if (k == -1 && map->connected == -1)
+		clear_map(map, "Map has unconnected submap\n");
+	if (k == -1 && (j == len - 1 || map->map[i][j] == '\n'
+		|| map->map[i][j] == '\0'))
+		map->connected = 0;
+	else
+		map->connected = -1;
+	return (j);
+}
+
 void	check_spaces(t_map *map)
 {
 	int	i;
@@ -92,43 +120,22 @@ void	check_spaces(t_map *map)
 	i = -1;
 	while (map->map[++i] && i < map->map_len - 1)
 	{
-		j = -1;
-		while (map->map[i][++j])
+		j = 0;
+		while (j < ft_strlen(map->map[i]))
 		{
-			if (map->map[i][j] == ' ')
-				space_loop(map, i, j);
-			else if (map->map[i][j] == '1' || map->map[i][j] == '0')
-				;
-			else if (map->map[i][j] == 'N' || map->map[i][j] == 'S'
-					|| map->map[i][j] == 'E' || map->map[i][j] == 'W')
+			while (ft_strlen(map->map[i]) > j & map->map[i][j] == ' ')
+				j++;
+			if (map->map[i][j] == '1' || map->map[i][j] == '0')
+				j = check_inside(map, i, j);
+			else if (player(map->map[i][j]) == 1)
+			{
 				map->player++;
+				j++;
+			}
 			else if (map->map[i][j] == '\n')
 				break ;
 			else
 				clear_map(map, "Map has some undefined chars\n");
 		}
 	}
-	check_path(map);
-}
-
-void	space_loop(t_map *map, int i, int j)
-{
-	map->c_map[i][j] = '.';
-	check_ends(map, i, j);
-	if (i - 1 >= 0 && map->c_map[i - 1][j] == ' ')
-		space_loop(map, i - 1, j);
-	else if (i - 1 >= 0 && !sign(map->c_map[i - 1][j]))
-		clear_map(map, "Map has space in the wrong place\n");
-	if (i + 1 < map->map_len && map->c_map[i + 1][j] == ' ')
-		space_loop(map, i + 1, j);
-	else if (i + 1 < map->map_len && !sign(map->c_map[i + 1][j]))
-		clear_map(map, "Map has space in the wrong place\n");
-	if (j - 1 >= 0 && map->c_map[i][j - 1] == ' ')
-		space_loop(map, i, j - 1);
-	else if (j - 1 >= 0 && !sign(map->c_map[i][j - 1]))
-		clear_map(map, "Map has space in the wrong place\n");
-	if (j + 1 < ft_strlen(map->c_map[i]) && map->c_map[i][j + 1] == ' ')
-		space_loop(map, i, j + 1);
-	else if (j + 1 < ft_strlen(map->c_map[i]) && !sign(map->c_map[i][j + 1]))
-		clear_map(map, "Map has space in the wrong place\n");
 }
