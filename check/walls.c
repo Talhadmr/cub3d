@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   walls.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ykissiko <ykissiko@student.42istanbul.com  +#+  +:+       +#+        */
+/*   By: ykissiko <ykissiko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 15:57:54 by ykissiko          #+#    #+#             */
-/*   Updated: 2023/10/31 15:57:55 by ykissiko         ###   ########.fr       */
+/*   Updated: 2023/12/05 17:52:31 by ykissiko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,12 +90,12 @@ void	check_spaces(t_map *map)
 	int	j;
 
 	i = -1;
-	while (map->c_map[++i] && i < map->map_len - 1)
+	while (map->map[++i] && i < map->map_len - 1)
 	{
 		j = -1;
-		while (map->c_map[i][++j])
+		while (map->map[i][++j])
 		{
-			if (map->c_map[i][j] == ' ')
+			if (map->map[i][j] == ' ')
 				space_loop(map, i, j);
 			else if (map->map[i][j] == '1' || map->map[i][j] == '0')
 				;
